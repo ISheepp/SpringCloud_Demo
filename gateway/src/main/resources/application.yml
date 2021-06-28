@@ -1,0 +1,19 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: codelin_route
+          uri: lb://provider
+          filters:
+            - AddRequestParameter=name,codelin
+          predicates:
+            - Method=GET
+  application:
+    name: gateway
+eureka:
+  client:
+    service-url:
+      defaultZone: http://lcoalhost:1111/eureka
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
